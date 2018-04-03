@@ -1,25 +1,28 @@
 def fizzbuzz(number = nil)
-  if number.nil?
-    return "Error: No parameter specified"
-  elsif !number.is_a? Numeric
-    return "Error: Parameter is not a number"
+  return "Error: No parameter specified" if number.nil?
+
+  return "Error: Parameter is not a number" unless number.is_a?(Numeric)
+  
+  if fizz?(number) && buzz?(number)
+    return "Fizzbuzz"
+
+  elsif fizz?(number)
+    return "Fizz"
+
+  elsif buzz?(number)
+    return "Buzz"
+
   else
-    checkfizzbuzz(number)
+    number
   end
 end
 
-def checkfizzbuzz(number)
-  if(number%3 == 0 && number%5==0)
-    return "Fizzbuzz"
-  end
+private
 
-  if(number%3 == 0)
-    return "Fizz"
-  end
+def fizz?(num)
+  num % 3 == 0
+end
 
-  if(number%5 == 0)
-    return "Buzz"
-  end
-
-  return number
+def buzz?(num)
+  num % 5 == 0
 end
